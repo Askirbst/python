@@ -39,6 +39,15 @@ def column_border(foo):
     foo()
     foo()
     print('+')
+
+def row_border(foo):
+    foo()
+    foo()
+    foo()
+    foo()
+
+def print_row():
+    column_border(horizontal_line)
     row_border(vertical_line)
 
 def print_grid(foo):
