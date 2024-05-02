@@ -5,12 +5,13 @@ def right_justify(s):
     spaceList = []
 
     for i in range(spaces):
-        spaceList.append(i + 1)
+        spaceList.append(' ')
     
     spaceList.append(str)
-    print(spaceList)
+    for i in range(spaces + 1):
+        print(spaceList[i], end='')
 
-## right_justify('purple')
+##right_justify('purple')
 
 def do_twice(f, val):
     f(val)
