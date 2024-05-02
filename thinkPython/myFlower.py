@@ -4,7 +4,7 @@ import math
 bob = turtle.Turtle()
 
 size = 100
-petal_number = 4
+petal_number = 8
 petal_angle = int(360 / petal_number)
 petal_width = 0
 
