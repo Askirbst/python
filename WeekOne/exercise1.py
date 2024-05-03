@@ -15,3 +15,18 @@ def check():
 # Call the function that was definied back to run it
 check()
 
+digit = input("Enter a whole number: ")
+
+while not digit.isnumeric():
+    digit = input("Try Again: ")
+
+num = int(digit)
+
+remainder_3 = num % 3
+remainder_5 = num % 5
+
+if remainder_3 == 0:
+    print("foo")
+    
+if remainder_5 == 0:
+    print("faa")
