@@ -30,6 +30,9 @@ def mapValue(value, start1, stop1, start2, stop2):
     """
     return ((value-start1)/(stop1-start1))*(stop2-start2)+start2
 
+def Cloning(li1): 
+    li_copy = li1
+    return li_copy 
 
 class Drop:
 
@@ -52,10 +55,11 @@ class Drop:
 
     def marble(self, other):
         for v in self.vertices:
-            c = other.center
-            r = other.r
-            p = copy.deepcopy(self.vertices)
-            m = Vector.mag(self.vertices, p)
+            self.center = other
+            p = self.vertices
+            m = Vector.mag(self, self.vertices, p)
+            other = Vector.sub(p)
+
 
     
 def createDrop(x, y):

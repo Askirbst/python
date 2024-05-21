@@ -40,6 +40,3 @@ def largest(num1, num2, num3):
     return max(nums)
 
 print(largest(34, 18, 67))
-
-def islargest(num1, num2, num3):
-    

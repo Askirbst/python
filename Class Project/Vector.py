@@ -14,8 +14,13 @@ class Vector:
 
     def add(self, x, y):
         # adds x and y to the vector allowing placement of drop where mouse clicked
-        other = [x, y]
+        other = pygame.math.Vector2(x, y)
         self.vector += other
+
+    def sub(self, x, y):
+        # subtracts another vector or x and y components from the current vector.
+        other = pygame.math.Vector2(x, y)
+        self.vector -= other
 
     def getX(self):
         # Get the x coordinate of the vector
@@ -25,8 +30,10 @@ class Vector:
         # Get the y coordinate of the vector
         return self.vector.y
     
-    def mag(self, x1, y1, x2, y2):
+    def mag(self, vertice1, vertice2):
         # Get the magnitude of two coordinates
+        x1, y1 = vertice1
+        x2, y2 = vertice2
         return math.sqrt((x2 - x1)**2 + (y2 - y1)**2)
 
 
