@@ -1,19 +1,19 @@
 '''3. Concatenation:'''
 
-## Write a program to concatenate two strings and display the result.
+# Write a program to concatenate two strings and display the result.
 
 str1 = input("Enter a string: ")
 str2 = input("Enter another string: ")
 
 print(str1, str2)
 
-## Write a program that takes a string input from the user and prints it in reverse order.
+# Write a program that takes a string input from the user and prints it in reverse order.
 
 def reverseString(s):
     reverseStr = ""
     for char in s:
-        reverseStr = char + reverseStr
-
+        reverseStr = char + reverseStr    # This function iterates through the string character by character  
+                                          # then creates a new string called reverseStr by adding char to the beginning of the new string
     return reverseStr
 
 userString = input("Enter a string to be reversed: ")
@@ -24,12 +24,12 @@ print(reverseStr)
 
 '''4. Complex String Operations'''
 
-## Write a program that takes a string input from the user and checks if it is a palindrome (reads the same forwards and backwards).
+# Write a program that takes a string input from the user and checks if it is a palindrome (reads the same forwards and backwards).
 
 def reverseString(s):
     reverseStr = ""
     for char in s:
-        reverseStr = char + reverseStr
+        reverseStr = char + reverseStr  # Similar idea here except we check it against the original string to see if they are equal
 
     return reverseStr
 
@@ -42,7 +42,7 @@ if userString == reverseStr:
 else:
     print("The word is not a palindrome.")
 
-## Write a program that takes a sentence as input and counts the number of vowels in it.
+# Write a program that takes a sentence as input and counts the number of vowels in it.
 
 def checkVowels(s):
     count = 0

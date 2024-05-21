@@ -1,6 +1,6 @@
 '''5. Complex Conditions and Variables:'''
 
-## Write a program that calculates the area of a triangle given its three sides using Heron's formula.
+# Write a program that calculates the area of a triangle given its three sides using Heron's formula.
 
 import math
 
@@ -37,7 +37,7 @@ areaOfTri = calculateArea()
 
 print("The area of the triangle is: ", areaOfTri)
 
-## Write a program that simulates a simple calculator, allowing the user to perform addition, subtraction, multiplication, and division operations on two numbers.
+# Write a program that simulates a simple calculator, allowing the user to perform addition, subtraction, multiplication, and division operations on two numbers.
 
 addition = ['+', 'add', 'addition', 'plus', 'sum']
 subtraction = ['-', 'sub', 'subtraction', 'subtract', 'difference']
