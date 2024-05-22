@@ -3,6 +3,8 @@ import math
 
 class Vector:
     def __init__(self, x, y):
+        self.x = x
+        self.y = x
         self.vector = pygame.math.Vector2(x, y)
         # returns a vector for x and y
 
@@ -12,15 +14,41 @@ class Vector:
         
         self.vector *= scalar
 
-    def add(self, x, y):
+    def add(self, x=None, y=None, vec=None):
         # adds x and y to the vector allowing placement of drop where mouse clicked
-        other = pygame.math.Vector2(x, y)
+        if vec is not None:
+            self.x = vec.x
+            self.y = vec.y
+        else:
+            if x is not None:
+                self.x = x
+            if y is not None:
+                self.y = y
+        other = pygame.math.Vector2(self.x, self.y)
         self.vector += other
 
-    def sub(self, x, y):
+    def sub(self, x=None, y=None, vec=None):
         # subtracts another vector or x and y components from the current vector.
-        other = pygame.math.Vector2(x, y)
+        if vec is not None:
+            self.x = vec.x
+            self.y = vec.y
+        else:
+            if x is not None:
+                self.x = x
+            if y is not None:
+                self.y = y
+        other = pygame.math.Vector2(self.x, self.y)
         self.vector -= other
+    
+    def set(self, x=None, y=None, vec=None):
+        if vec is not None:
+            self.x = vec.x
+            self.y = vec.y
+        else:
+            if x is not None:
+                self.x = x
+            if y is not None:
+                self.y = y
 
     def getX(self):
         # Get the x coordinate of the vector
@@ -30,11 +58,9 @@ class Vector:
         # Get the y coordinate of the vector
         return self.vector.y
     
-    def mag(self, vertice1, vertice2):
-        # Get the magnitude of two coordinates
-        x1, y1 = vertice1
-        x2, y2 = vertice2
-        return math.sqrt((x2 - x1)**2 + (y2 - y1)**2)
+    def mag(self):
+        # Get the magnitude of the coordinate
+        return math.sqrt(self.x**2 + self.y**2)
 
 
     def __str__(self):
