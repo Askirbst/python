@@ -26,7 +26,7 @@ def main():
     found = False
     while not found:
         while True:
-            user_letter = str.lower(input("Guess a letter\n"))
+            user_letter = (input("Guess a letter\n"))
             if user_letter.isalpha() and len(user_letter) == 1:
                 break
 
