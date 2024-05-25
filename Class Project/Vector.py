@@ -4,7 +4,7 @@ import math
 class Vector:
     def __init__(self, x, y):
         self.x = x
-        self.y = x
+        self.y = y
         self.vector = pygame.math.Vector2(x, y)
         # returns a vector for x and y
 
@@ -63,5 +63,5 @@ class Vector:
         return math.sqrt(self.x**2 + self.y**2)
 
 
-    def __str__(self):
-        return str(self.vector)
+    def __repr__(self):
+        return f"Vector(x={self.x}, y={self.y})"

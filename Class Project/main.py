@@ -11,7 +11,6 @@ running = True
 dt = 0
 
 TWO_PI = math.pi * 2
-
 drops = []
 circleDetail = 100
 radius = 50
@@ -38,7 +37,7 @@ class Drop:
             angle = mapValue(i, 0, s, 0, TWO_PI)
             vector = Vector(math.cos(angle), math.sin(angle)) # Confusing math I don't quite understand yet but it works so...
             vector.mult(self.r) # Multiplies the points in vector to the radius to scale the drop
-            vector.add(x, y) # Add the value of the x, y coordinate where the mouse clicked to the values in vector
+            vector.add(vec=self.center) # Add the value of the x, y coordinate where the mouse clicked to the values in vector
             self.polygonUsage.append((vector.getX(), vector.getY()))
             self.vertices.append(vector)
 
@@ -50,19 +49,19 @@ class Drop:
             c = other.center
             r = other.r
             p = copy.copy(v)
-            p.sub(vec=v)
+            p.sub(vec=c)
             m = v.mag()
             root = math.sqrt(1 + (r * r) / (m * m))
             p.mult(root)
             p.add(vec=c)
-            v.set(vec=p)
-    
+            v.set(vec=p)   
+
 def createDrop(x, y):
     drop = Drop(x, y, radius, circleDetail)
     for other in drops:
-        drop.marble(other)
-    drops.append(drop)
+        other.marble(drop)
 
+    drops.append(drop)
 
 while running:
     # poll for events
@@ -79,7 +78,6 @@ while running:
 
     # fill the screen with a color to wipe away anything from last frame
     screen.fill("white")
-
 
     for drop in drops:
         drop.drawDrop()
