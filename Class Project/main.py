@@ -1,7 +1,6 @@
 import pygame # type: ignore
 import math
-import copy
-from Vector import Vector
+import random
 
 # pygame setup
 pygame.init()
@@ -26,35 +25,38 @@ def mapValue(value, start1, stop1, start2, stop2):
 class Drop:
 
     def __init__(self, x, y, r, s): # Initialize a Class object with parameters (x, y, r, s) x and y are coordinates, r is the radius, and s is smoothing of circle (number of sides of polygon)
-        self.center = Vector(x,y)
+        self.center = pygame.Vector2(x,y)
         self.r = r
         self.s = s
 
+        # Randomize a color for each drop
+        self.colorR = random.randint(0, 255)
+        self.colorG = random.randint(0, 255)
+        self.colorB = random.randint(0, 255)
+
         self.vertices = []
-        self.polygonUsage = [] # Effectively a copy of the vertices but in number pairs to be used in draw.polygon()
 
         for i in range(s):
-            angle = mapValue(i, 0, s, 0, TWO_PI)
-            vector = Vector(math.cos(angle), math.sin(angle)) # Confusing math I don't quite understand yet but it works so...
-            vector.mult(self.r) # Multiplies the points in vector to the radius to scale the drop
-            vector.add(vec=self.center) # Add the value of the x, y coordinate where the mouse clicked to the values in vector
-            self.polygonUsage.append((vector.getX(), vector.getY()))
-            self.vertices.append(vector)
+            self.angle = mapValue(i, 0, s, 0, TWO_PI)
+            self.vector = pygame.Vector2(float(math.cos(self.angle)), float(math.sin(self.angle)))
+            self.vector.scale_to_length(self.r)
+            self.vector.xy += self.center.xy
+            self.vertices.append(self.vector)
 
     def drawDrop(self):
-        pygame.draw.polygon(screen, 'black', self.polygonUsage)
+
+        pygame.draw.polygon(screen, (self.colorR, self.colorG, self.colorB), self.vertices)
 
     def marble(self, other):
         for v in self.vertices:
             c = other.center
             r = other.r
-            p = copy.copy(v)
-            p.sub(vec=c)
-            m = v.mag()
-            root = math.sqrt(1 + (r * r) / (m * m))
-            p.mult(root)
-            p.add(vec=c)
-            v.set(vec=p)   
+            p = pygame.Vector2.copy(v)
+            p -= c
+            root = math.sqrt(1 + (r * r) / (p.magnitude_squared()))
+            p *= root
+            p += c
+            v.update(p)   
 
 def createDrop(x, y):
     drop = Drop(x, y, radius, circleDetail)
@@ -78,7 +80,6 @@ while running:
 
     # fill the screen with a color to wipe away anything from last frame
     screen.fill("white")
-
     for drop in drops:
         drop.drawDrop()
 
