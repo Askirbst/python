@@ -10,9 +10,14 @@ running = True
 dt = 0
 
 TWO_PI = math.pi * 2
+MAX_DROPS = 250
+
 drops = []
-circleDetail = 100
+circleDetail = 300
 radius = 50
+drag = False
+left_clicked = False
+right_clicked = False
 
 angle_increment = 2 * math.pi / circleDetail
 
@@ -56,30 +61,78 @@ class Drop:
             root = math.sqrt(1 + (r * r) / (p.magnitude_squared()))
             p *= root
             p += c
-            v.update(p)   
+            v.update(p)  
+
+    def tine(self, m, x, y, z, c):
+        u = 1 / math.pow(2, 1 / c)
+        b = pygame.math.Vector2(x, y)
+        for v in self.vertices:
+            pb = v - b
+            n = pygame.Vector2.copy(m).rotate(90)
+            d = abs(pb.dot(n))
+            mag = z * math.pow(u, d)
+            v += pygame.Vector2.copy(m) * mag
+
+def tineLine(m, x, y, z, c):
+    for drop in drops:
+        drop.tine(m, x, y, z, c)
 
 def createDrop(x, y):
     drop = Drop(x, y, radius, circleDetail)
     for other in drops:
         other.marble(drop)
+    if len(drops) >= MAX_DROPS:
+        drops.append(drop)
+        drops.pop(0)
+    else:    
+        drops.append(drop)
 
-    drops.append(drop)
+def direction_unit_vector(coord1, coord2):
+  x1, y1 = coord1
+  x2, y2 = coord2
+  dx = x2 - x1
+  dy = y2 - y1
+  magnitude = (dx**2 + dy**2)**0.5
+  if magnitude == 0:  # Handle coincident points (avoid division by zero)
+    return (0, 0)
+  else:
+    return (dx / magnitude, dy / magnitude)
+
+start_posXY = []
+end_posXY = []
 
 while running:
     # poll for events
     # pygame.QUIT event means the user clicked X to close the window
     for event in pygame.event.get():
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            # Check if the left mouse button is clicked
+            if event.button == 1: 
+                left_clicked = True  
+            if event.button == 3:
+                start_posXY = pygame.mouse.get_pos()
+
+        if event.type == pygame.MOUSEBUTTONUP:
+            if event.button == 1:            
+                left_clicked = False
+            if event.button == 3:
+                end_posXY = pygame.mouse.get_pos()
+
+                directX, directY = direction_unit_vector(start_posXY, end_posXY)
+                v = pygame.math.Vector2(directX, directY)
+                
+                tineLine(v, start_posXY[0], start_posXY[1], 50, 20)
+
         if event.type == pygame.QUIT:
             running = False
-        elif event.type == pygame.MOUSEBUTTONDOWN:
-            # Check if the left mouse button is clicked
-            if event.button == 1:  
-                # Get the position of the mouse click
-                mouseX, mouseY = pygame.mouse.get_pos()
-                createDrop(mouseX, mouseY)
 
+    if left_clicked:
+        mouseX, mouseY = pygame.mouse.get_pos()
+        createDrop(mouseX, mouseY)  
+    
     # fill the screen with a color to wipe away anything from last frame
     screen.fill("white")
+    # draws all drops in the drops list
     for drop in drops:
         drop.drawDrop()
 
@@ -89,6 +142,6 @@ while running:
     # limits FPS to 60
     # dt is delta time in seconds since last frame, used for framerate-
     # independent physics.
-    dt = clock.tick(60) / 1000
+    dt = clock.tick(30) / 1000
 
 pygame.quit()
