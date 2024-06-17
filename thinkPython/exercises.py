@@ -6,7 +6,7 @@ def right_justify(s):
 
     for i in range(spaces):
         spaceList.append(' ')
-    
+  
     spaceList.append(str)
     for i in range(spaces + 1):
         print(spaceList[i], end='')

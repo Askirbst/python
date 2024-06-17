@@ -46,7 +46,7 @@ def draw_a(t, length, angle):
     t.fd(25)
 
 
-#draw_a(bob, 50, 60)
+draw_a(bob, 50, 60)
 
 def draw_b(t, length):
     t.width(4)
@@ -58,7 +58,7 @@ def draw_b(t, length):
         t.lt(180)
 
 
-#draw_b(bob, 100)
+draw_b(bob, 100)
 
 def draw_c(t, length):
     t.rt(135)

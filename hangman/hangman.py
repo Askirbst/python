@@ -2,7 +2,6 @@ import string
 import random
 import re
 
-
 def main():
 
     word_list = []
@@ -52,7 +51,6 @@ def main():
 
     return
 
-
 def checkguess(random_word, user_letter, wrong_guesses, letter_list, wrong_letters):
 
     index = 0
@@ -72,7 +70,6 @@ def checkguess(random_word, user_letter, wrong_guesses, letter_list, wrong_lette
 
     return letter_list, wrong_guesses, wrong_letters
 
-
 def drawman(wrong_guesses, head, arms, legs):
 
     if wrong_guesses == 1:
@@ -91,7 +88,6 @@ def drawman(wrong_guesses, head, arms, legs):
     drawhanger(head, arms, legs)
     return head, arms, legs
 
-
 def printmatch(word_match):
 
     for c in word_match:
@@ -100,7 +96,6 @@ def printmatch(word_match):
         else:
             print('\x1b[0m_', end='')
     print('\x1b[0m')
-
 
 def drawhanger(head, arms, legs):
 
@@ -111,6 +106,5 @@ def drawhanger(head, arms, legs):
     print(f"  |  {legs}")
     print("  |")
     print("__|__")
-
 
 main()

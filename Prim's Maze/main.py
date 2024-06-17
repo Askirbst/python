@@ -1,4 +1,4 @@
-import pygame
+import pygame # type: ignore
 
 # pygame setup
 pygame.init()
@@ -16,7 +16,7 @@ while running:
     # fill the screen with a color to wipe away anything from last frame
     screen.fill("purple")
 
-    # RENDER YOUR GAME HERE 
+    
 
     # flip() the display to put your work on screen
     pygame.display.flip()
