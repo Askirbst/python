@@ -8,9 +8,14 @@ def middle(word):
     return word[1:-1]
 
 def is_palindrome(word):
+    if len(word) <= 2:
+        return
+    elif is_palindrome(middle(word)) == False:
+        return False
+    
     if first(word) == last(word):
-        is_palindrome(middle(word))
+        return True
     else:
-        return False        
+        return False
         
-print(is_palindrome("racecar"))
+print(is_palindrome("asdfggfdsa"))
