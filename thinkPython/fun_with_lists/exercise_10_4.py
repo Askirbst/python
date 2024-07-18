@@ -7,8 +7,8 @@ and returns None
 '''
 
 def chop(t):
-    t.pop(0)
-    t.pop(-1)
+    del t[0]
+    del t[-1]
 
 lis = [1, 2, 3, 4, 5, 6]
 
