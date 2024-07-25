@@ -44,7 +44,6 @@ This function uses recursion to do a binary search of the list for the word pass
 
 '''
 def in_bisect(t, value):
-    is_word = False
     length = len(t)
     if length <= 1:
         return False
@@ -54,11 +53,9 @@ def in_bisect(t, value):
     if value == word:
         return True
     elif value > word:
-        is_word = in_bisect(t[length:], value)
+        return in_bisect(t[length:], value)
     else:
-        is_word = in_bisect(t[0:length], value)
-
-    return is_word
+        return in_bisect(t[0:length], value)
 
 
 '''

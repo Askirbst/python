@@ -2,7 +2,7 @@ import math
 
 def build_list_append():
     t = []
-    with open("F:/Programming/Git_Python/python/thinkPython/Chapter_10/words.txt") as file:
+    with open("words.txt") as file:
         for line in file:
             t.append(line.strip())
     return t
