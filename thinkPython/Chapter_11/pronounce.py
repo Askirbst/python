@@ -12,7 +12,7 @@ License: http://creativecommons.org/licenses/by/4.0/
 from __future__ import print_function, division
 
 
-def read_dictionary(filename='c06d.txt'):
+def read_dictionary(filename='C:/GitHub/python/thinkPython/Chapter_11/c06d.txt'):
     """Reads from a file and builds a dictionary that maps from
     each word to a string that describes its primary pronunciation.
 
