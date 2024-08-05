@@ -14,6 +14,6 @@ def is_anagram(str1, str2):
             return False
     
 a_string = "monument"
-b_string = "TNEMUNOM"
+b_string = "TNEMUBOM"
 
 print(is_anagram(a_string, b_string))
