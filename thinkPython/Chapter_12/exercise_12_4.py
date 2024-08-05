@@ -3,7 +3,7 @@ word_list = []
 
 
 def make_word_list():
-    fin = open("C:/GitHub/python/thinkPython/words.txt")
+    fin = open("F:/Programming/Git_Python/python/thinkPython/Chapter_12/words.txt")
     for line in fin:
         word_list.append(line[:-1])
     word_list.sort(key=len)
@@ -49,5 +49,5 @@ def create_dict(file):
 
 
 make_word_list()
-file_path = 'C:/GitHub/python/thinkPython/Chapter_12/output.txt'
+file_path = 'F:/Programming/Git_Python/python/thinkPython/Chapter_12/output.txt'
 create_dict(file_path)
